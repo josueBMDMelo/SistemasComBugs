@@ -1,0 +1,49 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+indent_style = space
+indent_size = 4
+
+# Visual Studio
+[*.{cs,csproj,sln}]
+# Use block namespace declarations
+csharp_style_namespace_declarations = block_scoped
+
+# Qualification preferences
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+# var preferences
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = false:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# Expression-level preferences
+csharp_prefer_simple_default_expression = true:suggestion
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+
+# Using directives
+dotnet_sort_system_directives_first = true:suggestion
+csharp_using_directive_placement = outside_namespace:suggestion
+
+# File length and wrapping
+max_line_length = 120
+
+# Naming: PascalCase for types, camelCase for locals
+[*.cs]
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = all_types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case_style
+
+dotnet_naming_symbols.all_types.applicable_kinds = class, struct, interface, enum, delegate
+
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# End of .editorconfig

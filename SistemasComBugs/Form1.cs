@@ -2,8 +2,8 @@ namespace SistemasComBugs
 {
     public partial class Form1 : Form
     {
-        string usuario = "ADMIN";
-        string senha = "Senha123";
+        string usuario = "admin";
+        string senha = "1234";
         public Form1()
         {
             InitializeComponent();
@@ -17,15 +17,15 @@ namespace SistemasComBugs
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string usuarioDigitado = txtUser.Text.ToUpper();
-            string senhaDigitada = txtPassword.Text.ToUpper();
+            string senhaDigitada = txtPassword.Text;
 
-            if (usuarioDigitado == "ADMIN" && senhaDigitada == "Senha123")
+            if (usuarioDigitado == usuario.ToUpper() && senhaDigitada == senha)
             {
                 MessageBox.Show("Login realizado!");
             }
             else
             {
-                MessageBox.Show("Usu·rio ou senha inv·lidos.");
+                MessageBox.Show("Usu√°rio ou senha inv√°lidos.");
             }
         }
     }

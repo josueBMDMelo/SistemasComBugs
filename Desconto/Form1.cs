@@ -1,3 +1,5 @@
+using Microsoft.Data.SqlClient;
+
 namespace Desconto
 {
     public partial class Form1 : Form
@@ -16,6 +18,58 @@ namespace Desconto
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            string conexao =
+            @"Server=NOME-DA-MAQUINA\SQLEXPRESS;
+              Database=NOME-DO-BANCO;
+              Trusted_Connection=True;
+              TrustServerCertificate=True;";
+
+                        string sql = @"
+            INSERT INTO Pessoas
+            (
+                Nome,
+                Sobrenome,
+                DataNascimento,
+                Sexo,
+                Email,
+                Profissao
+            )
+            VALUES
+            (
+                @Nome,
+                @Sobrenome,
+                @DataNascimento,
+                @Sexo,
+                @Email,
+                @Profissao
+            )";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conexao))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@Nome", txtNome.Text);
+                        command.Parameters.AddWithValue("@Sobrenome", txtSobrenome.Text);
+                        command.Parameters.AddWithValue("@DataNascimento", txtNascimento.Text);
+                        command.Parameters.AddWithValue("@Sexo", cmbSexo.Text);
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        command.Parameters.AddWithValue("@Profissao", txtProfissao.Text);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Pessoa cadastrada com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao cadastrar: " + ex.Message);
+            }
+
             if (!ValidarPessoa())
                 return;
 
